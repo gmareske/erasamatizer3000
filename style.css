@@ -1,0 +1,26 @@
+body {
+    max-width: 80%;
+}
+.blackout {
+    background: #000;
+    border-radius: 10px;
+}
+.invert {
+    background: #000;
+}
+.invert .blackout {
+    background: #fff;
+    padding: 2px;
+}
+.erase_ui {
+    display: inline-block;
+    margin: 10px;
+}
+.erase_ui_wrapper {
+    display: block;
+}
+.text_input {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
