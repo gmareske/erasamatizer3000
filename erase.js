@@ -31,9 +31,24 @@ function text_reset() {
 }
 
 function text_invert() {
-    $('#text').toggleClass('invert');
+    $('.blackout').toggleClass('invert');
+    $('.blackout-area').toggleClass('invert');
+}
+function upload_input() {
+    let input_el = document.getElementById('input_text')
+    if (text = "") {
+	input_el = document.getElementById('input_url');
+		     // process url...
+    }
+    text_el.innerHTML = input_el.value;
+    master_text = input_el.value;
+    input_el.value = "";
+    $('.choose_ui').addClass('hide');
 }
 // Event handlers
+// text upload
+$('#button_choose').click(() => {$('.choose_ui').removeClass('hide')});
+$('#button_upload').click(upload_input);
 // text inversion
 $('#button_invert').click(text_invert);
 // button reset

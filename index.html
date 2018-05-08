@@ -24,8 +24,18 @@
     <div class="erase_ui">
       <button id="button_invert">Invert!</button>
     </div>
+    <div class="erase_ui">
+      <button id="button_choose">Choose Input</button>
     </div>
-    <pre id="text">
+    </div>
+    <div class="choose_ui hide">
+      <textarea id="input_text" class="text_input" value="" cols="50" rows="10"></textarea>
+      <input id="input_url" class="text_input" name="" type="text"
+	     value="Insert a URL"/>
+      <button id="button_upload">Upload!</button>
+    </div>
+    <div class="blackout-area">
+      <pre id="text">
 1
 Harry Potter and the Sorcerer's Stone
 CHAPTER ONE
@@ -1149,7 +1159,7 @@ The storm raged more and more ferociously as the night went on. Harry
 couldn't sleep. He shivered and turned over, trying to get comfortable,
 his stomach rumbling with hunger. Dudley's snores were drowned by the
 low rolls of thunder that started near midnight. The lighted dial of
-Dudley's watch, </pre>
+Dudley's watch, </pre></div>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
