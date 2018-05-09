@@ -36,8 +36,15 @@ function text_invert() {
 }
 function upload_input() {
     let input_el = document.getElementById('input_text')
-    if (text = "") {
+    if (input_el.value === "") {
 	input_el = document.getElementById('input_url');
+	$.get(input_el.value,function(data) {
+	    text_el.innerHTML = data
+	    master_text = data
+	});
+	input_el.value = "";
+	$('.choose_ui').addClass('hide');
+	return;
 		     // process url...
     }
     text_el.innerHTML = input_el.value;
