@@ -1,6 +1,7 @@
 
 var text_el = document.getElementById('text');
 var master_text = text_el.innerHTML;
+var master_doc = nlp(master_text);
 
 function erase(regexs) {
     let t = master_text + '';
@@ -17,6 +18,7 @@ function erase_compound(regexs) {
     var templ = '<span class="blackout">$&</span>';
     let ignore = /(?!<span class="blackout">.*<\/span>)/gm;
     for (var i = 0; i < regexs.length; i++) {
+	console.log('erasing with source regex ' + regexs[i]);
 	let actual_regex = new RegExp('(' + regexs[i].source + ')' + ignore.source,
 				     'gm');
 	t = t.replace(actual_regex,
@@ -26,6 +28,13 @@ function erase_compound(regexs) {
     return t;
 }
 
+function clean_match_output(text) {
+    return text.replace('.','\\.') // clean periods
+}
+function erase_from_match(m) {
+    regexs = m.list.map(term => {return new RegExp(clean_match_output(term.out('text')))});
+    erase_compound(regexs);
+}
 function text_reset() {
     text_el.innerHTML = master_text
 }
@@ -49,6 +58,7 @@ function upload_input() {
     }
     text_el.innerHTML = input_el.value;
     master_text = input_el.value;
+    master_doc = nlp(master_text);
     input_el.value = "";
     $('.choose_ui').addClass('hide');
 }
@@ -64,9 +74,11 @@ $('#button_reset').click(text_reset);
 $('#button_erase_regex').click(() => {
     let el = document.getElementById('erase_input_regex');
     let text = el.value;
-    let regex = new RegExp(text);
-    console.log('Going to do the erase with ' + regex);
-    erase_compound([regex]);
+    
+    console.log('Going to do the erase with ' + text);
+    m = master_doc.match(text);
+    console.log(m);
+    erase_from_match(m);
     el.value = '';
 });
 
