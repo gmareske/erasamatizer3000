@@ -18,7 +18,7 @@ function erase_compound(regexs) {
     var templ = '<span class="blackout">$&</span>';
     let ignore = /(?!<span class="blackout">.*<\/span>)/gm;
     for (var i = 0; i < regexs.length; i++) {
-	console.log('erasing with source regex ' + regexs[i]);
+	console.log('erasing with source regex: ' + regexs[i]);
 	let actual_regex = new RegExp('(' + regexs[i].source + ')' + ignore.source,
 				     'gm');
 	t = t.replace(actual_regex,
@@ -29,8 +29,9 @@ function erase_compound(regexs) {
 }
 
 function clean_match_output(text) {
-    return text.replace('.','\\.') // clean periods
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,'\\$&');
 }
+
 function erase_from_match(m) {
     regexs = m.list.map(term => {return new RegExp(clean_match_output(term.out('text')))});
     erase_compound(regexs);
@@ -75,7 +76,7 @@ $('#button_erase_regex').click(() => {
     let el = document.getElementById('erase_input_regex');
     let text = el.value;
     
-    console.log('Going to do the erase with ' + text);
+    console.log('Original erasure value: ' + text);
     m = master_doc.match(text);
     console.log(m);
     erase_from_match(m);
