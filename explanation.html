@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Creatively Erase Text"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Erasamatizer3000</title>
+
+    <link href="style.css" rel="stylesheet"/>
+
+  </head>
+  <body>
+		
+
+    <article>
+      <a href="index.html">Back to tool</a>
+      <a href="index.html"><h1>Erasamatizer 3000</h1></a>
+      <h2>How to Erase</h2>
+      <p>
+	Erasure is done here using a special syntax in the "text to
+	erase" box to the left of the <button>Erase!</button> button.
+	<br/>
+	At a very basic level, you can type in a literal word that you
+	want to erase in the box and every instance of that word will
+	be erased.
+	The patterns below can be combined in any way, and the gallery
+	below provides some examples of combined patterns.
+	Caution should be taken when using these patterns with large
+	samples of text, as the processing time for tagging and NLP
+	can be quite large and slow down and freeze web browsers.
+	<br/>
+	In this guide, I highlighted just a few features of the
+	underlying technology for erasure that I think are the most
+	applicable to the domain of literature that this tool is
+	intended for.
+	For a more comprehensive overview of the syntax, pleace check
+	out
+	the <a href="https://github.com/spencermountain/compromise/wiki/Match-syntax">reference
+	page</a> in the comprimise.js repository, which is what powers
+	this project.
+      </p>
+      <div class="erase-tutorial">
+      <h3>Parts of Speech (Tags)</h3>
+      <p>To erase tags, type in a pound sign followed by the
+	appropriate tag, i.e. <code>#Noun</code> to erase all
+	nouns.</p>
+      </div>
+      <div class="erase-tutorial">
+	<h3>Suffix, Prefixes, and Infixes</h3>
+	<p>Using an underscore character servers as a wildcard for
+	  any amount of characters, so <code>_ed</code> erases all
+	  words ending in -ed, <code>_in_</code> erases any words
+	  with 'in' in the middle, and so on
+	</p>
+      </div>
+      <div class="erase-tutorial">
+	<h3>This or That</h3>
+	<p>You can define a list of things that could possibly be
+	  matched by enclosing them in parentheses and seperating them
+	  by pipes. For example, <code>(run|dash|sprint)</code> will
+	  match a group of fast words,
+	  or <code>(very|really|#adverb)</code> will erase text
+	  according to a selection of writing advice from established authors.</p>
+      </div>
+      <div class="erase-tutorial">
+	<h3>Anything, Everything, and Nothing</h3>
+	<p> A general wildcard expression is just a period (<code>.</code>), and
+	  matches to any kind of word. <code>#noun . .</code> erases
+	  any noun followed by two words of any kind.
+	  <br/>
+	  A greedy wildcard matches to at least one and maybe more of
+	  a given token in a row. <code>#noun+</code> erases any amount of
+	  nouns in a row, such as "John, Mark, Luke".
+	  <br/>
+	  A potential marker optionally matches a word, but doesn't
+	  require it. An example is <code>#person [#adverb]?
+	  runs</code>, which would erase both the sentence "John runs"
+	  and "John swiftly runs".
+	</p>
+      </div>
+      <div class="erase-tutorial">
+	<h3>Regular Expressions</h3>
+	<p>
+	  Regular expression syntax works as well on the text here,
+	  although slower than many other erasing strategies. All
+	  that's needed is enclose the regular expression
+	  in <code>/.../</code> forward slashes.
+	</p>
+      </div>
+      <h2>Other Features</h2>
+      <h3>Inversion</h3>
+      <p>Pressing invert is a neat feature that flips the erased and
+      normal text around. I have found it just as useful for creating
+	cool erasure work.</p>
+      <h3>Uploads</h3>
+      <p>The upload button creates a large box where you can paste in
+      text, and a url box for text file urls. Many sites that host
+      text files do not allow them to be cross-referenced or
+	downloaded by this tool, so pasting in text is recommended.
+	<br/>
+      Note that all pasted text will keep it's original format on the
+      web page.</p>
+
+      <h2>Gallery</h2>
+      <div class="gallery-image">
+	<h3>"God Called"</h3>
+	<p>Created with the erasure rule <code>#noun _ed</code></p>
+	<img alt="Text erasure poem titled God Called"
+	     src="gallery/example1.png"/>
+      </div>
+      <div class="gallery-image">
+	<h3>"What is Lost"</h3>
+	<p>Created with the erasure rules <code>_er</code>
+	and <code>(lose|losing|lost)</code>. Derived from One Art by
+	Elizabeth Bishop</p>
+	<img alt="Text erasure poem titled What Is Lost, derived from
+	One Art by Elizabeth Bishop" src="gallery/example2.png"/>
+      </div>
+      <div class="gallery-image">
+	<h3></h3>
+	<p>
+	  Created with the erausre rules <code>#pronoun</code>
+	  and <code>Write .</code>. Derived from One Art by Elizabeth Bishop
+	</p>
+	<img alt="Text erasure poem titled Write It!, derived from One
+	Art by Elizabeth Bishop" src="gallery/example3.png"/>
+      </div>
+
+      <h2>Acknowledgments</h2>
+      <p>Created by Griffin
+	Mareske, <a href="mailto:mareskeg@grinnell.edu">mareskeg@grinnell.edu</a></p>
+      <p>A lot of comments and feedback came from the Spring 2018 Lighting the
+      Page class at Grinnell College.</p>
+      <p>This project is heavily based
+	on <a href="https://github.com/spencermountain/compromise/">compromise.js</a>, a natural language library for
+	javascript. Special thanks to the open source maintainers for
+	being awesome!</p>
+      <p>Also built using <a href="https://jquery.com">jQuery</a>.</p>
+      
+    </article>
+  <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+</html>
